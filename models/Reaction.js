@@ -1,12 +1,13 @@
-const { ObjectId } = require('bson'); // ??? auto import?
 const { Schema, Types } = require('mongoose');
+const moment = require('moment')
 
 const reactionSchema = new Schema(
     {
-        reactionId:
+        _id:
         {
-            type: Schema.Types.ObjectId,
+            type: String,
             default: () => new Types.ObjectId(), // default: ?????
+            alias: 'reactionId'
         },
         reactionBody:
         {
@@ -16,15 +17,15 @@ const reactionSchema = new Schema(
         },
         username:
         {
-            type: Schema.Types.username, //???? maybe add this.schema?
-            ref: 'User',
+            type: String,
             required: true,
         },
         createdAt:
         {
             type: Date,
             default: Date.now,
-            //USE GETTER METHOD TO FORMAT TIMESTAMP ON QUERY?????????
+            // get: createdAtVal => moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a"),
+            //USE GETTER METHOD TO FORMAT TIMESTAMP ON QUERY????????? ^^^^
         },
     }
     ,

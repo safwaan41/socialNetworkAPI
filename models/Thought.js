@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const Reaction = require('./Reaction');
+const moment = require('moment')
 
 const thoughtSchema = new Schema(
     {
@@ -14,12 +15,12 @@ const thoughtSchema = new Schema(
         {
             type: Date,
             default: Date.now,
-            //USE GETTER METHOD TO FORMAT TIMESTAMP ON QUERY?????????
+            // get: createdAtVal => moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a"),
+            //USE GETTER METHOD TO FORMAT TIMESTAMP ON QUERY?????????^^^
         },
         username:
         {
-            type: Schema.Types.username, //???? maybe add this.schema?
-            ref: 'User',
+            type: String, 
             required: true,
         },
         reactions: [Reaction]
